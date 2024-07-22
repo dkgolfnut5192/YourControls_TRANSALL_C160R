@@ -1,0 +1,1459 @@
+# Version 0.1
+
+include:
+  - definitions/modules/Instruments/AS_GNS430.yaml
+  - definitions/modules/Instruments/AS_GNS530.yaml
+  - definitions/modules/Instruments/AS_GTX330.yaml
+  - definitions/modules/Instruments/AS_GNS650.yaml  
+  - definitions/modules/Instruments/AS_KR87.yaml 
+  - definitions/modules/Instruments/AS_KAP140.yaml
+  - definitions/modules/Instruments/PMS50_GNS.yaml
+  - definitions/modules/Instruments/PMS50_GTN.yaml
+  - definitions/modules/Instruments/TDS_GTNXi.yaml
+  - definitions/modules/autopilot.yaml
+  - definitions/modules/controls.yaml
+  - definitions/modules/deice.yaml
+  - definitions/modules/engines.yaml
+  - definitions/modules/fuel.yaml
+  - definitions/modules/general.yaml
+  - definitions/modules/handling.yaml
+  - definitions/modules/lights.yaml
+  - definitions/modules/navigation.yaml
+  - definitions/modules/pressurization.yaml
+  - definitions/modules/radios.yaml
+  - definitions/modules/safety.yaml
+  - definitions/modules/trim.yaml
+  
+  
+SHARED:
+  - # TEST
+   type: NumSet
+   var_name: A:LIGHT LANDING:2
+   var_units: Bool
+   var_type: f64
+   event_name: LANDING_LIGHTS_SET
+   event_param: 2
+
+  - # LVAR's
+#  - #############  CoPILOT PANELS #############
+#  - ## CoPilot CENTER FRONT PANELS - HYDRAULIC BLUE/GREEN & YELLOW ##
+#  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_LEVEL_TEST_PRESSED
+  -
+    type: var
+    var_name: L:AZP_C160_HYDRAULIC_BLUE_YELLOW_RERAM_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_LOW_LEVEL_BLUE_YELLOW_LIGHT     
+  - #
+    type: var
+    var_name: L:AZP_C160_HYDRAULIC_GREEN_RED_REArM_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_LOW_LEVEL_GREEN_RED_LIGHT      
+  - #
+    type: var
+    var_name: L:AZP_C160_HYDRAULIC_YELLOW_PUMP_SWITCH  
+    
+#  - ## CENTER FRONT PANELS - EFIS, NEON and Display systems ##
+  - #
+    type: var
+    var_name: L:AZP_C160_EADI_POWER_COPILOT_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_EHSI_POWER_COPILOT_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_NEON_COPILOT_WHITE_LEVEL      
+  - #
+    type: var
+    var_name: L:AZP_C160_NEON_COPILOT_UV_LEVEL      
+  - #
+    type: var
+    var_name: L:AZP_C160_NEON_COPILOT_GREEN_LEVEL   
+  - #
+    type: var
+    var_name: L:AZP_C160_EFIS_COPILOT_CONTROL_SOURCE_SWITCH 
+  - #
+    type: var
+    var_name: L:AZP_C160_BDHI_2_SOURCE_1   
+    
+  - # EHSI NAV DATA selector
+    type: var
+    var_name: L:AZP_C160_DSP_NAV_DATA_KNOB_2      
+  -
+    type: ToggleSwitch
+    var_name: A:PLANE HEADING DEGREES MAGNETIC
+    var_units: Bool
+    var_type: bool
+    event_name: HEADING_BUG_SYNC
+  - #
+    type: var
+    var_name: L:AZP_C160_DSP_2_CRS_SEL      
+  - #
+    type: var
+    var_name: L:AZP_C160_DSP_EHSI_RANGE_2      
+  - #
+    type: var
+    var_name: L:AZP_C160_DSP_EHSI_MODE_KNOB_2      
+  - #
+    type: var
+    var_name: L:AZP_C160_DSP_ACTIVE_ROUTE_KNOB_2   
+  - # CoPilot Altimeter KNOB
+    type: var
+    var_name: L:INSTRUMENT_Altimeter_2     
+
+#  - ## CoPILOT RIGHT PANEL - ARM ##
+  - #
+    type: var
+    var_name: L:AZP_C160_WINDOW_COPILOT      
+#  - ## CoPILOT AZP INTERCOM 2 - RIGHT ARM ##
+  - # 
+    type: var
+    var_name: L:AZP_C160_UHF_SOUND_KNOB 
+  - #
+    type: var
+    var_name: L:AZP_C160_UHF_EMISSION_ON      
+  -    
+    type: ToggleSwitch
+    var_name: K:PILOT_TRANSMITTER_SET:0 
+    var_units: Bool
+    var_type: bool
+    event_name: COpilot_VHF1_TOGGLE
+  - #
+    type: var
+    var_name: K:PILOT_TRANSMITTER_SET:1
+    var_units: Bool
+    var_type: bool
+    event_name: COpilot_VHF2_TOGGLE
+  - #
+    type: var
+    var_name: L:AZP_C160_HF_SOUND_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_HF_EMISSION_ON      
+  - #
+    type: var
+    var_name: L:AZP_C160_INT_SOUND_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_INT_EMISSION_ON   
+  - #
+    type: var
+    var_name: L:AZP_C160_CGO_SOUND_KNOB     
+  - #
+    type: var
+    var_name: L:AZP_C160_CGO_EMISSION_ON      
+  - #
+    type: var
+    var_name: L:AZP_C160_INTERCOM_N_S_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_INTERCOM_3_TEST_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_INTERCOM_C_M_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_RWR_SOUND_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_SPKR_SOUND_KNOB 
+    
+#  - #############  GLARESHIELD #############
+#  - ## LIGHTING ##
+  - #
+    type: var
+    var_name: L:LIGHTING_PANEL_7      
+  - #
+    type: var
+    var_name: L:LIGHTING_PANEL_8      
+  - #
+    type: var
+    var_name: L:LIGHTING_PANEL_9     
+#  - ## ALARMS ##
+  - #
+    type: var
+    var_name: L:AZP_C160_ALARMS_TEST_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_ALARMS_BRIGHTNESS_MODE 
+
+    
+#  - #############  OVERHEAD PANELS #############
+#  - ## OVERHEAD UPPER PANEL LEFT COLUMN ##
+  - #
+    type: var
+    var_name: L:AZP_C160_FLAPS_REARM_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_FLAPS_REARM_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_FLAPS_TEST_TORSION_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_FLAPS_TEST_TORSION_PRESSED      
+  - #
+    type: var
+    var_name: L:LIGHTTING_RECOGNITION_1      
+  - #
+    type: var
+    var_name: L:LIGHTING_PANEL_3      
+  - #
+    type: var
+    var_name: L:AZP_C160_METHANOL_SWITCH:1     
+  - #
+    type: var
+    var_name: L:AZP_C160_METHANOL_PUMP_ON      
+  - #
+    type: var
+    var_name: L:AZP_C160_METHANOL_SWITCH:2      
+  - #
+    type: var
+    var_name: L:AZP_C160_METHANOL_PUMP_ON:2   
+  - # APU FUEL VALVE LEVER
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:1
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 1
+  - # INTER LEFT FUEL VALVE LEVER
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:2
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 2
+  - # TANK A FUEL VALVE LEVER
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:3
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 3
+  - # TANK B FUEL VALVE LEVER
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:4
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 4
+  - # TANK A FUEL VALVE LEVER
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:21
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 21
+  - # TANK B FUEL VALVE LEVER
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:22
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 22
+
+#  - ## OVERHEAD UPPER PANEL CENTER COLUMN ##
+  - #
+    type: var
+    var_name: L:AZP_C160_G1_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_G2_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_G3_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_G4_SWITCH   
+  - #
+    type: var
+    var_name: L:AZP_C160_G5_SWITCH   
+  - #
+    type: var
+    var_name: L:AZP_C160_GPU_CONNECTED     
+  - #
+    type: var
+    var_name: L:AZP_C160_EXT_SOURCE_REARM_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_XP1_TRANSFER_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_XP2_TRANSFER_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_XP3_TRANSFER_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_XP4_TRANSFER_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_XP1_XP2_REARM_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_XP3_XP4_REARM_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_RECTIFIER_1_2_REARM_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_BAT1_GPU_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_BAT2_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_OFFLOADING_PP21_HOOD   
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_OFFLOADING_PP21   
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_OFFLOADING_PP22_HOOD     
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_OFFLOADING_PP22   
+    
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_OFFLOADING_PP24_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_OFFLOADING_PP24     
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_OFFLOADING_PP25_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_OFFLOADING_PP25 
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_OFFLOADING_PP26_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_OFFLOADING_PP26     
+  - #
+    type: var
+    var_name: L:AZP_C160_BAT_VOLTAGE_GAUGE_SWITCH
+  - #
+    type: var
+    var_name: L:AZP_C160_OIL_TEMPERATURE_REGULATION_SWITCH:1      
+  - #
+    type: var
+    var_name: L:AZP_C160_OIL_TEMPERATURE_REGULATION_SWITCH:2      
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_VIBRATION_TEST_BUTTON_PRESSED:1      
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_VIBRATION_FOR_LO_PRESSED:1   
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_VIBRATION_MEASURE_ON:1   
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_VIBRATION_TEST_BUTTON_PRESSED:2     
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_VIBRATION_FOR_LO_PRESSED:2      
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_VIBRATION_MEASURE_ON:2      
+ 
+#  - ## OVERHEAD UPPER PANEL RIGHT COLUMN ##
+  - #
+    type: var
+    var_name: L:AZP_C160_GEN_PARAMETERS_GAUGE_PHASE_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_GEN_PARAMETERS_GAUGE_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_BAT_VOLTAGE_GAUGE_SWI      
+  - # Inter RIGHT FUEL VALVE
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:6
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 6
+  - # TANK A FUEL VALVE LEVER
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:7
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 7
+  - # TANK A FUEL VALVE LEVER
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:23
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 23
+  - # TANK B FUEL VALVE LEVER
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:8
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 8
+  - # TANK B FUEL VALVE LEVER
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:24
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 24
+  - # FUEL DUMP VALVE LEVER
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:20
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 20
+  
+#  - ## OVERHEAD MIDDLE PANEL LEFT ##
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_SERVO_HEAT_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_AOA_SENSOR_HEAT_SWITCH    
+  - #
+    type: var
+    var_name: L:LIGHTING_PANEL_11      
+  - # Pilot WIPER
+    type: var
+    var_name: L:AZP_C160_WIPER_KNOB:1      
+  - # CoPilot WIPER
+    type: var
+    var_name: L:AZP_C160_WIPER_KNOB:2      
+
+
+#  - ## OVERHEAD MIDDLE PANEL CENTER/RIGHT ##
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_ENGINE_DEICE_SWITCH:1      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_ENGINE_DEFROST_HOT_AIR_BLEED_SWITCH:1   
+  - #
+    type: var
+    var_name: L:AZP_C160_ANTI_ICE_TEST_KNOB   
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_WINGS_DEFROST_SWITCH     
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_WINGS_DEFROST_TYPE_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_WINGS_DEFROST_REARM_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_WINGS_DEFROST_TEST_SWITCH      
+  - #
+    type: NumSet
+    var_name: A:WING LIGHT ON:3
+    var_units: Bool
+    var_type: f64
+    event_name: WING_LIGHTS_SET
+    event_param: 3    
+  - #
+    type: var
+    var_name: L:AZP_C160_ICING_SENSOR_HEAT_BUTTON_PRESSED     
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_DEFROST_CYCLER_FAST      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_TAIL_DEFROST_REARM_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_TAIL_DEFROST_TEST_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_TAIL_DEFROST_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_WINDSHIELD_DEFROST_PILOT_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_WINDSHIELD_DEFROST_PILOT_ON   
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_WINDSHIELD_DEFROST_CENTRAL_SWITCH   
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_WINDSHIELD_DEFROST_CENTRAL_ON  
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_WINDSHIELD_DEFROST_COPILOT_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_WINDSHIELD_DEFROST_COPILOT_ON     
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_WINDSHIELD_DEFROST_LATERAL_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_WINDSHIELD_DEFROST_LATERAL_ON      
+  - #
+    type: var
+    var_name: L:AZP_C160_ANTI_ICE_WINDSHIELD_TEST_SWITCH
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_ENGINE_DEICE_SWITCH:2     
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_ENGINE_DEFROST_HOT_AIR_BLEED_SWITCH:2
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_GTG_DEFROST_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_SHUTOFF_TEST_BUTTONS_HOOD:1      
+  - #
+    type: var
+    var_name: L:AZP_C160_HYDRAULIC_SHUTOFF_VALVES_L_TEST_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_SHUTOFF_VALVE_L_TEST_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_SHUTOFF_LEFT_HANDLE      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_SHUTOFF_OVERHEAT_L_TEST_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_SHUTOFF_FIRE_L_TEST_PRESSED
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_ALARM_FIRE_ENGINE_1_INTENSITY  
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_SHUTOFF_GTG_HANDLE     
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_SHUTOFF_VALVE_GTG_TEST_PRESSED     
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_ALARM_FIRE_GTG_INTENSITY      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_SHUTOFF_TEST_BUTTONS_HOOD:2      
+  - #
+    type: var
+    var_name: L:AZP_C160_HYDRAULIC_SHUTOFF_VALVES_R_TEST_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_SHUTOFF_VALVE_R_TEST_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_SHUTOFF_RIGHT_HANDLE      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_SHUTOFF_OVERHEAT_R_TEST_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_SHUTOFF_FIRE_R_TEST_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_ALARM_FIRE_ENGINE_2_INTENSITY      
+  - #
+    type: var
+    var_name: L:AZP_C160_EXTINGUISHER_1_TEST_PRESSED:1      
+  - #
+    type: var
+    var_name: L:AZP_C160_EXTINGUISHER_2_TEST_PRESSED:1      
+  - #
+    type: var
+    var_name: L:AZP_C160_EXTINGUISHER_GTG_TEST_PRESSED   
+  - #
+    type: var
+    var_name: L:AZP_C160_EXTINGUISHER_1_TEST_PRESSED:2   
+  - #
+    type: var
+    var_name: L:AZP_C160_EXTINGUISHER_2_TEST_PRESSED:2  
+
+#  - ## OVERHEAD LOWER PANEL LEFT ##
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_CRASH_GROUP_TOGGLE      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_CRASH_BAT12_TOGGLED      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_CRASH_GEN1_TOGGLED      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_CRASH_GEN2_TOGGLED      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_CRASH_GEN3_TOGGLED      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_CRASH_GEN4_TOGGLED      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELECTRICAL_CRASH_GEN5_TOGGLED      
+  - #
+    type: var
+    var_name: L:LIGHTING_PANEL_15      
+  - #
+    type: var
+    var_name: L:LIGHTING_PANEL_1      
+  - #
+    type: var
+    var_name: L:AZP_C160_TAXI_LIGHT_SWITCH   
+  - #
+    type: var
+    var_name: L:AZP_C160_LIGHTING_TAXI_EXTENDED     
+  -
+    type: ToggleSwitch
+    var_name: A:LIGHT LANDING:1
+    var_units: Bool
+    var_type: bool
+    event_name: LANDING_LIGHTS_TOGGLE
+    event_param: 1
+  -
+    type: ToggleSwitch
+    var_name: A:LIGHT LANDING:2
+    var_units: Bool
+    var_type: bool
+    event_name: LANDING_LIGHTS_TOGGLE
+    event_param: 2
+  - #
+    type: var
+    var_name: L:AZP_C160_HYDRAULIC_SERVO_PITCH_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_HYDRAULIC_SERVO_PITCH_POWER_ON      
+  - #
+    type: var
+    var_name: L:AZP_C160_HYDRAULIC_SERVO_YAW_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_HYDRAULIC_SERVO_YAW_POWER_ON      
+  - #
+    type: var
+    var_name: L:AZP_C160_HYDRAULIC_SERVO_MASTER_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_HYDRAULIC_SERVO_MASTER_POWER_ON      
+  - #
+    type: var
+    var_name: L:AZP_C160_HANDLING_TRIM_YAW_SWITCH_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_HANDLING_TRIM_YAW_ON      
+  - #
+    type: var
+    var_name: L:AZP_C160_HANDLING_TRIM_ROLL_SWITCH_HOOD     
+  - #
+    type: var
+    var_name: L:AZP_C160_HANDLING_TRIM_ROLL_ON   
+  - #
+    type: var
+    var_name: L:AZP_C160_GYRO_VG1_FAST_CALIBRATION_PRESSED   
+  - #
+    type: var
+    var_name: L:AZP_C160_GYRO_VG2_FAST_CALIBRATION_PRESSED     
+  - #
+    type: var
+    var_name: L:AZP_C160_CVR_TEST_BUTTON_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_CVR_ERASE_BUTTON_PRESSED      
+
+#  - ## OVERHEAD LOWER PANEL CENTER/RIGHT ##
+  - #
+    type: var
+    var_name: L:AZP_C160_COMPRESSOR_TRANSFER_MODE_SWITCH:1      
+  - #
+    type: var
+    var_name: L:AZP_C160_COMPRESSOR_TRANSFER_MODE_SWITCH:2      
+  - #
+    type: var
+    var_name: L:AZP_C160_AIR_CONDITIONING_ENGINE_VALVE_SWITCH:1      
+  - #
+    type: var
+    var_name: L:AZP_C160_AIR_CONDITIONING_ENGINE_VALVE_SWITCH:2     
+  - #
+    type: var
+    var_name: L:AZP_C160_AIR_CONDITIONING_GTG_VALVE_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_AIR_CONDITIONING_GTG_VENTILATION_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_AIR_CONDITIONING_GTG_VENTILATION_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_AIR_CONDITIONING_TEMPERATURE_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_AIR_CONDITIONING_TEMPERATURE_SWITCH      
+#  - #
+#    type: var
+#    var_name: L:AZP_C160_PRESSURIZATION_RATE_CHANGE   
+#  - #
+#    type: NumIncrement
+#    var_name: A:PRESSURIZATION CABIN ALTITUDE RATE
+#    var_units: Feet Per Second
+#    var_type: f64
+#    up_event_name: PRESSURIZATION_PRESSURE_RATE_INC
+#    down_event_name: PRESSURIZATION_PRESSURE_RATE_DEC
+#    increment_by: 53 
+#  - #
+#    type: NumIncrement
+#    var_name: A:PRESSURIZATION CABIN ALTITUDE
+#    var_units: Feet
+#    var_type: f64
+#    up_event_name: PRESSURIZATION_PRESSURE_ALT_INC
+#    down_event_name: PRESSURIZATION_PRESSURE_ALT_DEC
+#    increment_by: 53    
+  - #
+    type: var
+    var_name: L:AZP_C160_PRESSURIZATION_DUMP_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_PRESSURIZATION_DUMP_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_DOORS_OPENING_SWITCH_STATE      
+  - #
+    type: var
+    var_name: L:AZP_C160_DOORS_COMMANDS_STOKER_HOOD    
+  - #
+    type: var
+    var_name: L:AZP_C160_DOORS_COMMANDS_STOKER      
+  - #
+    type: var
+    var_name: L:AZP_C160_DOORS_HORN_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_DOORS_CARGO_HORN      
+  - #
+    type: var
+    var_name: L:AZP_C160_DOORS_SIGNALS_MODE      
+  - #
+    type: var
+    var_name: L:AZP_C160_DOORS_HYDRAULIC_CIRCUIT      
+  - #
+    type: var
+    var_name: L:AZP_C160_DOORS_DROPPING_PILOT_NAV      
+  - #
+    type: var
+    var_name: L:AZP_C160_ACCESSORIES_OIL_TEMPERATURE_GAUGE_SWITCH   
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_TANK_REFUELLING_SWITCH_ON:1   
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_TANK_REFUELLING_SWITCH_ON:2     
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_TANK_REFUELLING_SWITCH_ON:3      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_TANK_REFUELLING_SWITCH_ON:4      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_TANK_REFUELLING_SWITCH_ON:5      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_TANK_REFUELLING_SWITCH_ON:6
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_TRANSFER_MODE      
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_TRANSFER_PUMPS_SUPPLY_SWITCH      
+  -
+    type: ToggleSwitch
+    var_name: A:LIGHT WING:2
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_WING_LIGHTS
+    event_param: 2
+  - #
+    type: var
+    var_name: L:AZP_C160_FUEL_TRANSFER_VALVES_SUPPLY_SWITCH      
+  - # TRANSFER PUMPS
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:9
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_PUMP_SWITCH_TOGGLE
+    event_param: 9
+  - # TRANSFER PUMPS
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:10
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_PUMP_SWITCH_TOGGLE
+    event_param: 10
+  - # TRANSFER PUMPS
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:11
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_PUMP_SWITCH_TOGGLE
+    event_param: 11
+  - # TRANSFER PUMPS
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:12
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_PUMP_SWITCH_TOGGLE
+    event_param: 12
+  - # TRANSFER VALVE
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:13
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 13
+  - # TRANSFER VALVE
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:14
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 14
+  - # TRANSFER VALVE
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:15
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 15
+  - # TRANSFER VALVE
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:16
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 16
+  - # TRANSFER VALVE
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:17
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 17
+  - # TRANSFER VALVE
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:18
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 18
+  - # TRANSFER VALVE
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:19
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_VALVE_SWITCH_TOGGLE
+    event_param: 19
+#  - ## OVERHEAD AUDIO PANEL 2 SELECTOR Area ##
+  - # TEST CALL button
+    type: var
+    var_name: L:AZP_C160_INTERCOM_2_TEST_PRESSED      
+#  - ## SARSAT ELT Panel
+  - #
+    type: var
+    var_name: L:AZP_C160_ELT_SWITCH_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_ELT_SWITCH_POSITION 
+
+#  - ## LOWER AUDIO PANEL SELECTORS ##
+  -
+    type: var
+    var_name: L:AZP_C160_AP_PRIORITY_COPILOT      
+  - #
+    type: var
+    var_name: L:AZP_C160_IRS_SOURCE_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_FMS_SOURCE_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_FLARES_POWER_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_FLARES_POWER_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_FLARES_READY  
+  - #
+    type: var
+    var_name: L:AZP_C160_FLARES_MODE_SWITCH     
+   
+
+#  - #############  PEDISTAL #############
+#  - ## COLUMN 1 PANELS ##
+  -
+    type: var
+    var_name: L:AP_PITCH_REF_SET
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_IDLE_LEVER_POSITION:1      
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_IDLE_LEVER_POSITION:2      
+  - #
+    type: var
+    var_name: L:AZP_C160_AP_TRIM      
+  - #
+    type: var
+    var_name: L:ParkingBrake_Position      
+
+#  - ## COLUMN 2 PANELS ##
+  - #
+    type: var
+    var_name: L:AZP_C160_BRAKE_MINISTOP_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_BRAKE_MINISTOP_ENABELED      
+  -
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:1  
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_PUMP_SWITCH_TOGGLE
+    event_param: 1
+  -
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:2  
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_PUMP_SWITCH_TOGGLE
+    event_param: 2
+  -
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:3  
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_PUMP_SWITCH_TOGGLE
+    event_param: 3
+  -
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:4  
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_PUMP_SWITCH_TOGGLE
+    event_param: 4
+  -
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:5  
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_PUMP_SWITCH_TOGGLE
+    event_param: 5
+  -
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:6  
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_PUMP_SWITCH_TOGGLE
+    event_param: 6
+  -
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:7  
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_PUMP_SWITCH_TOGGLE
+    event_param: 7
+  -
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:8  
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_PUMP_SWITCH_TOGGLE
+    event_param: 8    
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_STARTER_HOOD:1     
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_STARTER_POSITION:1      
+  - #
+    type: var
+    var_name: L:AZP_C160_PROPELLER_BRAKE_HOOD:1      
+  - #
+    type: var
+    var_name: L:AZP_C160_PROPELLER_BRAKE_ENABLED:1   
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_GENERAL_STARTER_POSITION     
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_STARTER_HOOD:2      
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_STARTER_POSITION:2      
+  - #
+    type: var
+    var_name: L:AZP_C160_PROPELLER_BRAKE_HOOD:2      
+  - #
+    type: var
+    var_name: L:AZP_C160_PROPELLER_BRAKE_ENABLED:2      
+  - #
+    type: var
+    var_name: L:AZP_C160_IRS_TEST_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_IRS_1_POWER_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_IRS_2_POWER_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_BCR_1_EMERGENCY_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_POWER_KNOB   
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_LIGHT_INTENSITY     
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_GAIN      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_ELEVATION      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_IMPULSE_SHORT      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_GVT_ON      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_BEACON_MODE_ON      
+
+#  - ## COLUMN 3 CENTER PANELS ##
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_CONDITION_LEVER_POS_1      
+  - #
+    type: var
+    var_name: L:AZP_C160_ENGINE_CONDITION_LEVER_POS_2      
+  - #
+    type: var
+    var_name: L:AZP_C160_NEON_PANEL_CENTRAL_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_NEON_CENTRAL_WHITE_LEVEL      
+  - #
+    type: var
+    var_name: L:AZP_C160_NEON_CENTRAL_UV_LEVEL      
+  - #
+    type: var
+    var_name: L:AZP_C160_NEON_CENTRAL_GREEN_LEVEL   
+
+
+#  - ## COLUMN 4 PANELS ##
+  - #
+    type: var
+    var_name: L:AZP_C160_IFF_DIM_SWITCH     
+  - #
+    type: var
+    var_name: L:AZP_C160_IFF_MIC_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_IFF_DIAG_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_IFF_POWER_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_IFF_ZERO_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_IFF_A_B_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_IFF_VER_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_IFF_AUDIO_LIGHT_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_IFF_VOL_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_IFF_MIL_CIV_SWITCH
+    
+#  - ## COLUMN 5 PANELS ##
+  - #
+    type: var
+    var_name: L:AZP_C160_GTG_AIR_INLET_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_GTG_START
+  - #
+    type: var
+    var_name: L:AZP_C160_GTG_INFLIGHT_STARTER_HELP_ON
+  - #
+    type: var
+    var_name: L:AZP_C160_PROPELLER_SYNC_HOOD 
+  - #
+    type: var
+    var_name: L:AZP_C160_PROPELLER_TEST_HOOD:1
+  - #
+    type: var
+    var_name: L:AZP_C160_PROPELLER_TEST_HOOD:2     
+
+#  - ## LOWER PEDISTAL PANELS ##
+  - #
+    type: var
+    var_name: L:AZP_C160_SPOILERS_EMERGENCY_RETRACT_HANDLE     
+  - #
+    type: var
+    var_name: L:AZP_C160_FLAPS_EMERGENCY_LEVER   
+  - #
+    type: var
+    var_name: L:LIGHTING_PANEL_10      
+  - #
+    type: var
+    var_name: L:AZP_C160_YAW_SERVO_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_YAW_SERVO_DISCONNECTED      
+  - #
+    type: var
+    var_name: L:AZP_C160_ROLL_SERVO_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_ROLL_SERVO_DISCONNECTED      
+  - #
+    type: var
+    var_name: L:AZP_C160_PITCH_SERVO_HOOD      
+  - #
+    type: var
+    var_name: L:AZP_C160_PITCH_SERVO_DISCONNECTED      
+    
+#  - #############  PILOT PANELS LEFT #############
+#  - ## WINDOW & SPOTLIGHT ##
+  - #
+    type: var
+    var_name: L:AZP_C160_WINDOW_PILOT      
+  - #
+    type: var
+    var_name: L:LIGHTING_CABIN_2      
+  - #
+    type: var
+    var_name: L:AZP_C160_STEERING_TILLER_SWITCH_HOOD
+  - #
+    type: var
+    var_name: L:AZP_C160_STEERING_TILLER_DISABLED_SWITCH
+    
+#  - ## PILOT AZP INTERCOM 1 - LEFT ARM ##
+  - # 
+    type: var
+    var_name: L:AZP_C160_UHF_SOUND_KNOB 
+  - #
+    type: var
+    var_name: L:AZP_C160_UHF_EMISSION_ON      
+  -    
+    type: ToggleSwitch
+    var_name: K:PILOT_TRANSMITTER_SET:0 
+    var_units: Bool
+    var_type: bool
+    event_name: COpilot_VHF1_TOGGLE
+
+  - #
+    type: var
+    var_name: K:PILOT_TRANSMITTER_SET:1
+    var_units: Bool
+    var_type: bool
+    event_name: COpilot_VHF2_TOGGLE
+  - #
+    type: var
+    var_name: L:AZP_C160_HF_SOUND_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_HF_EMISSION_ON      
+  - #
+    type: var
+    var_name: L:AZP_C160_INT_SOUND_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_INT_EMISSION_ON   
+  - #
+    type: var
+    var_name: L:AZP_C160_CGO_SOUND_KNOB     
+  - #
+    type: var
+    var_name: L:AZP_C160_CGO_EMISSION_ON      
+  - #
+    type: var
+    var_name: L:AZP_C160_INTERCOM_N_S_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_INTERCOM_1_TEST_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_INTERCOM_C_M_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_RWR_SOUND_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_SPKR_SOUND_KNOB 
+
+#  - #############  PILOT PANELS MAIN #############
+#  - ## PILOT PANEL LEFT of Screens ##
+  - #
+    type: var
+    var_name: L:AZP_C160_ALTERNATE_STATIC_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_BDHI_1_SOURCE1      
+  - #
+    type: var
+    var_name: L:AZP_C160_BDHI_1_SOURCE2      
+ 
+#  - ## PILOT PANEL RIGHT of Screens ##
+  - #
+    type: var
+    var_name: L:AZP_C160_FUSELAGE_LIFT_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_IAS_MAN      
+  - #
+    type: var
+    var_name: L:XMLVAR_Hours_Delta      
+  - #
+    type: var
+    var_name: L:XMLVAR_Adjusting_Hours      
+  - #
+    type: var
+    var_name: L:XMLVAR_Hours_Delta      
+  - #
+    type: var
+    var_name: L:XMLVAR_Minutes_Delta 
+  - #
+    type: var
+    var_name: L:XMLVAR_Adjusting_Minutes      
+  - #
+    type: var
+    var_name: L:XMLVAR_Minutes_Delta      
+  - #
+    type: var
+    var_name: L:AZP_C160_ATTITUDE_BARS_PILOT      
+  - # PILOT ALTIMETER CALIBRATION
+    type: var
+    var_name: L:INSTRUMENT_Altimeter_1      
+  - #
+    type: var
+    var_name: L:AZP_C160_EADI_POWER_PILOT_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_EHSI_POWER_PILOT_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_NEON_PANEL_PILOT_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_NEON_PILOT_WHITE_LEVEL      
+  - #
+    type: var
+    var_name: L:AZP_C160_NEON_PILOT_UV_LEVEL      
+  - #
+    type: var
+    var_name: L:AZP_C160_NEON_PILOT_GREEN_LEVEL   
+  - #
+    type: var
+    var_name: L:AZP_C160_EFB_ON     
+  - #
+    type: var
+    var_name: L:AZP_C160_EFIS_PILOT_CONTROL_SOURCE_SWITCH      
+  - #
+    type: var
+    var_name: L:AZP_C160_DSP_NAV_DATA_KNOB_1      
+  - #
+    type: var
+    var_name: L:AZP_C160_DSP_1_CRS_SEL      
+  - #
+    type: var
+    var_name: L:AZP_C160_DSP_EHSI_RANGE_1      
+  - #
+    type: var
+    var_name: L:AZP_C160_DSP_EHSI_MODE_KNOB_1 
+  - #
+    type: var
+    var_name: L:AZP_C160_DSP_ACTIVE_ROUTE_KNOB_1      
+    
+  
+#  - ## PILOT PANEL CENTER ##
+   
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_OBSERVATION_MODE      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_MARKER      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_SCREEN_BRIGHTNESS      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_SENSIBILITY   
+  - #
+    type: var
+    var_name: L:AZP_C160_VISUALISATION_ANGLE_KNOB     
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_CONTRAST
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_RANGE_KNOB     
+  - #
+    type: var
+    var_name: L:AZP_C160_CRASH_PILOT_HOOD 
+  - #
+    type: var
+    var_name: L:AZP_C160_CRASH_PILOT_SWITCH     
+
+#  - ## REAR ENGINEER PANEL ##
+  - #
+    type: var
+    var_name: L:AZP_C160_INTERCOM_4_TEST_PRESSED      
+  - #
+    type: var
+    var_name: L:AZP_C160_BDHI_3_SOURCE1      
+  - #
+    type: var
+    var_name: L:AZP_C160_BDHI_3_SOURCE2      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_2_POWER_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_2_LIGHT_INTENSITY      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_2_GAIN      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_2_ELEVATION      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_2_IMPULSE_SHORT      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_2_GVT_ON      
+  - #
+    type: var
+    var_name: L:AZP_C160_WXR_2_BEACON_MODE_ON   
+  - #
+    type: var
+    var_name: L:AZP_C160_NAVIGATOR_KNOB_2     
+  - #
+    type: var
+    var_name: L:LIGHTING_PANEL_4      
+  - #
+    type: var
+    var_name: L:LIGHTING_PANEL_16      
+#  - ## YOKES ##
+  - #
+    type: var
+    var_name: L:AZP_C160_YAW_TRIM_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_ROLL_TRIM_KNOB      
+  - #
+    type: var
+    var_name: L:AZP_C160_YOKE_COPILOT_SWITCH      
+
+server:
+  -
+    type: var
+    var_name: A:FUEL TANK LEFT MAIN LEVEL
+    var_units: Percent
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:FUEL TANK RIGHT MAIN LEVEL
+    var_units: Percent
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:1
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:2
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:3
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:4
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:5
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:6
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:7
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:8
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:9
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:10
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:11
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
